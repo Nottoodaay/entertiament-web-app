@@ -7,6 +7,7 @@ export const LoginPgage = () => {
      flex items-center justify-center
      ">
         <LoginField/>
+        {/* <RegisterField/> */}
     </div>
   )
 }

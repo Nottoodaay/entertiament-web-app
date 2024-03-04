@@ -1,8 +1,21 @@
 import { useState } from "react"
 
+import { signInWithEmailAndPassword } from "firebase/auth"
+import {auth} from '../firebase'
+
 export const LoginField = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const handleClick = () =>{
+      signInWithEmailAndPassword(auth,email,password)
+        .then((cred)=>{
+          console.log('log in', cred.user)
+          setEmail('')
+          setPassword('')
+        })
+        .catch((err)=>console.log(err))
+    }
   return (
     <div>
         <div></div>
@@ -12,7 +25,7 @@ export const LoginField = () => {
         bg-[#161D2F] rounded-xl
         pl-[24px]
         '>
-            <h1 className=' text-[32px] text-[#FFFFFF]'>Login</h1>
+            <h1 className=' text-[32px] text-[#FFFFFF] pt-[24px]'>Login</h1>
             <div className=' flex flex-col gap-[24px]'>
                 <input 
                 className='
@@ -45,6 +58,7 @@ export const LoginField = () => {
              rounded-md 
              flex items-center justify-center
             bg-[#FC4747] text-[white]'
+            onClick={handleClick}
              >Login to your account</button>
         </div>
     </div>
